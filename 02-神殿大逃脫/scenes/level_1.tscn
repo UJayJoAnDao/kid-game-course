@@ -1,0 +1,213 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/wall.png" id="r1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://scenes/trap.tscn" id="r3"]
+[ext_resource type="PackedScene" path="res://scenes/checkpoint.tscn" id="r4"]
+[ext_resource type="PackedScene" path="res://scenes/door.tscn" id="r5"]
+[ext_resource type="PackedScene" path="res://scenes/exit.tscn" id="r6"]
+[ext_resource type="PackedScene" path="res://scenes/gem.tscn" id="r7"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="r8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/floor.png" id="r9"]
+
+[sub_resource type="RectangleShape2D" id="w1"]
+size = Vector2(1280, 64)
+
+[sub_resource type="RectangleShape2D" id="w2"]
+size = Vector2(1280, 64)
+
+[sub_resource type="RectangleShape2D" id="w3"]
+size = Vector2(64, 576)
+
+[sub_resource type="RectangleShape2D" id="w4"]
+size = Vector2(64, 576)
+
+[sub_resource type="RectangleShape2D" id="w5"]
+size = Vector2(960, 192)
+
+[node name="神殿" type="Node2D"]
+script = ExtResource("r8")
+"時間限制" = 90
+
+[node name="地板" type="TextureRect" parent="."]
+texture_repeat = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("r9")
+stretch_mode = 1
+
+[node name="牆壁" type="Node2D" parent="."]
+
+[node name="上牆" type="StaticBody2D" parent="牆壁"]
+position = Vector2(640, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="牆壁/上牆"]
+texture_repeat = 2
+texture = ExtResource("r1")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="牆壁/上牆"]
+shape = SubResource("w1")
+
+[node name="下牆" type="StaticBody2D" parent="牆壁"]
+position = Vector2(640, 704)
+
+[node name="Sprite2D" type="Sprite2D" parent="牆壁/下牆"]
+texture_repeat = 2
+texture = ExtResource("r1")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="牆壁/下牆"]
+shape = SubResource("w2")
+
+[node name="左牆" type="StaticBody2D" parent="牆壁"]
+position = Vector2(32, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="牆壁/左牆"]
+texture_repeat = 2
+texture = ExtResource("r1")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 576)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="牆壁/左牆"]
+shape = SubResource("w3")
+
+[node name="右牆" type="StaticBody2D" parent="牆壁"]
+position = Vector2(1248, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="牆壁/右牆"]
+texture_repeat = 2
+texture = ExtResource("r1")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 576)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="牆壁/右牆"]
+shape = SubResource("w4")
+
+[node name="中間石牆" type="StaticBody2D" parent="牆壁"]
+position = Vector2(544, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="牆壁/中間石牆"]
+texture_repeat = 2
+texture = ExtResource("r1")
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="牆壁/中間石牆"]
+shape = SubResource("w5")
+
+[node name="玩家" parent="." instance=ExtResource("r2")]
+position = Vector2(160, 576)
+
+[node name="練習陷阱" parent="." instance=ExtResource("r3")]
+position = Vector2(352, 576)
+"週期" = 2.0
+
+[node name="檢查點1" parent="." instance=ExtResource("r4")]
+position = Vector2(544, 576)
+
+[node name="陷阱A" parent="." instance=ExtResource("r3")]
+position = Vector2(672, 576)
+"週期" = 2.0
+
+[node name="陷阱B" parent="." instance=ExtResource("r3")]
+position = Vector2(800, 576)
+"週期" = 3.0
+
+[node name="陷阱C" parent="." instance=ExtResource("r3")]
+position = Vector2(928, 576)
+"週期" = 4.0
+
+[node name="檢查點2" parent="." instance=ExtResource("r4")]
+position = Vector2(1056, 576)
+
+[node name="檢查點3" parent="." instance=ExtResource("r4")]
+position = Vector2(992, 192)
+
+[node name="雙燈籠大門" parent="." instance=ExtResource("r5")]
+position = Vector2(800, 192)
+"燈籠A每幾秒亮" = 4.0
+"燈籠B每幾秒亮" = 6.0
+
+[node name="最後陷阱" parent="." instance=ExtResource("r3")]
+position = Vector2(352, 192)
+"週期" = 3.0
+"冒出秒數" = 1.5
+
+[node name="寶箱出口" parent="." instance=ExtResource("r6")]
+position = Vector2(160, 192)
+
+[node name="寶石1" parent="." instance=ExtResource("r7")]
+position = Vector2(480, 576)
+
+[node name="寶石2" parent="." instance=ExtResource("r7")]
+position = Vector2(736, 512)
+
+[node name="寶石3" parent="." instance=ExtResource("r7")]
+position = Vector2(864, 640)
+
+[node name="寶石4" parent="." instance=ExtResource("r7")]
+position = Vector2(992, 576)
+
+[node name="寶石5" parent="." instance=ExtResource("r7")]
+position = Vector2(1120, 384)
+
+[node name="寶石6" parent="." instance=ExtResource("r7")]
+position = Vector2(672, 128)
+
+[node name="寶石7" parent="." instance=ExtResource("r7")]
+position = Vector2(544, 256)
+
+[node name="寶石8" parent="." instance=ExtResource("r7")]
+position = Vector2(480, 192)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="上方底色" type="ColorRect" parent="UI"]
+offset_right = 1280.0
+offset_bottom = 52.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="時間標籤" type="Label" parent="UI"]
+offset_left = 24.0
+offset_top = 6.0
+offset_right = 300.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 30
+text = "時間：0 秒"
+
+[node name="剩餘標籤" type="Label" parent="UI"]
+offset_left = 330.0
+offset_top = 6.0
+offset_right = 620.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 30
+text = "剩下：90 秒"
+
+[node name="寶石標籤" type="Label" parent="UI"]
+offset_left = 660.0
+offset_top = 6.0
+offset_right = 960.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.5, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "寶石：0 / 0"
+
+[node name="提示標籤" type="Label" parent="UI"]
+offset_left = 96.0
+offset_top = 316.0
+offset_right = 1000.0
+offset_bottom = 420.0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.05, 0.1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 26
+text = "WASD 或方向鍵走路。躲開尖刺、撿寶石，\n在時間內找到寶箱逃出神殿！（按 R 重來）"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
