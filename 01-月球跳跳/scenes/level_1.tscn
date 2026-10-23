@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_plat"]
+[ext_resource type="PackedScene" path="res://scenes/ground.tscn" id="4_ground"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" path="res://scenes/flag.tscn" id="6_flag"]
+[ext_resource type="PackedScene" path="res://scenes/bounce_pad.tscn" id="7_pad"]
+[ext_resource type="Texture2D" path="res://assets/sprites/space_bg.png" id="8_bg"]
+[ext_resource type="PackedScene" path="res://scenes/高台.tscn" id="9_top"]
+
+[node name="關卡一" type="Node2D"]
+script = ExtResource("1_level")
+掉落高度 = 950.0
+
+[node name="背景" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="星空" type="TextureRect" parent="背景"]
+texture_repeat = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_bg")
+stretch_mode = 1
+
+[node name="玩家" parent="." instance=ExtResource("2_player")]
+position = Vector2(120, 540)
+
+[node name="地面左" parent="." instance=ExtResource("4_ground")]
+position = Vector2(280, 660)
+
+[node name="地面右" parent="." instance=ExtResource("4_ground")]
+position = Vector2(1390, 660)
+
+[node name="平台1" parent="." instance=ExtResource("3_plat")]
+position = Vector2(520, 605)
+
+[node name="平台2" parent="." instance=ExtResource("3_plat")]
+position = Vector2(690, 550)
+
+[node name="起跳台" parent="." instance=ExtResource("3_plat")]
+position = Vector2(1050, 605)
+
+[node name="高台" parent="." instance=ExtResource("9_top")]
+position = Vector2(1050, 400)
+
+[node name="星1" parent="." instance=ExtResource("5_coin")]
+position = Vector2(300, 565)
+
+[node name="星2" parent="." instance=ExtResource("5_coin")]
+position = Vector2(520, 540)
+
+[node name="星3" parent="." instance=ExtResource("5_coin")]
+position = Vector2(690, 485)
+
+[node name="星4" parent="." instance=ExtResource("5_coin")]
+position = Vector2(1500, 560)
+
+[node name="月亮星" parent="." instance=ExtResource("5_coin")]
+position = Vector2(1050, 335)
+
+[node name="彈跳墊" parent="." instance=ExtResource("7_pad")]
+position = Vector2(1550, 590)
+
+[node name="終點旗" parent="." instance=ExtResource("6_flag")]
+position = Vector2(1700, 585)
+
+[node name="高台提示" type="Label" parent="."]
+offset_left = 870.0
+offset_top = 300.0
+offset_right = 1240.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 20
+text = "高台：只有低重力才跳得上來！（站上起跳台，往上跳）"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="分數標籤" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 320.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "分數：0"
+
+[node name="提示標籤" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 1260.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 22
+text = "用 A/D 或 ← → 移動，空白鍵跳。吃星星、走到旗子就贏！掉下去會重來，也可以按 R 重來。"
+autowrap_mode = 2

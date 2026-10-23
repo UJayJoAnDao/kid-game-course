@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/tile_stone.png" id="1_tile"]
+
+[sub_resource type="RectangleShape2D" id="shape_top"]
+size = Vector2(280, 70)
+
+[node name="高台" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_tile")
+region_enabled = true
+region_rect = Rect2(0, 0, 280, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+one_way_collision = true
+shape = SubResource("shape_top")

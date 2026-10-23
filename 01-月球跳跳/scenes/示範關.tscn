@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_plat"]
+[ext_resource type="PackedScene" path="res://scenes/ground.tscn" id="4_ground"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" path="res://scenes/flag.tscn" id="6_flag"]
+[ext_resource type="Texture2D" path="res://assets/sprites/space_bg.png" id="7_bg"]
+[ext_resource type="PackedScene" path="res://scenes/示範_怪物.tscn" id="8_m"]
+[ext_resource type="PackedScene" path="res://scenes/示範_彈簧.tscn" id="9_s"]
+
+[node name="示範關" type="Node2D"]
+script = ExtResource("1_level")
+掉落高度 = 950.0
+
+[node name="背景" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="星空" type="TextureRect" parent="背景"]
+texture_repeat = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bg")
+stretch_mode = 1
+
+[node name="玩家" parent="." instance=ExtResource("2_player")]
+position = Vector2(120, 540)
+
+[node name="地面1" parent="." instance=ExtResource("4_ground")]
+position = Vector2(280, 660)
+
+[node name="地面2" parent="." instance=ExtResource("4_ground")]
+position = Vector2(1390, 660)
+
+[node name="地面3" parent="." instance=ExtResource("4_ground")]
+position = Vector2(2500, 660)
+
+[node name="踏板1" parent="." instance=ExtResource("3_plat")]
+position = Vector2(835, 520)
+
+[node name="踏板2" parent="." instance=ExtResource("3_plat")]
+position = Vector2(1945, 520)
+
+[node name="平台1" parent="." instance=ExtResource("3_plat")]
+position = Vector2(520, 480)
+
+[node name="平台2" parent="." instance=ExtResource("3_plat")]
+position = Vector2(760, 380)
+
+[node name="高台" parent="." instance=ExtResource("3_plat")]
+position = Vector2(1200, 300)
+
+[node name="彈簧" parent="." instance=ExtResource("9_s")]
+position = Vector2(1150, 590)
+
+[node name="怪物1" parent="." instance=ExtResource("8_m")]
+position = Vector2(600, 595)
+
+[node name="怪物2" parent="." instance=ExtResource("8_m")]
+position = Vector2(1350, 595)
+
+[node name="怪物3" parent="." instance=ExtResource("8_m")]
+position = Vector2(1680, 595)
+
+[node name="怪物4" parent="." instance=ExtResource("8_m")]
+position = Vector2(2400, 595)
+
+[node name="星1" parent="." instance=ExtResource("5_coin")]
+position = Vector2(300, 560)
+
+[node name="星2" parent="." instance=ExtResource("5_coin")]
+position = Vector2(520, 420)
+
+[node name="星3" parent="." instance=ExtResource("5_coin")]
+position = Vector2(760, 320)
+
+[node name="星4" parent="." instance=ExtResource("5_coin")]
+position = Vector2(835, 460)
+
+[node name="星5" parent="." instance=ExtResource("5_coin")]
+position = Vector2(1945, 460)
+
+[node name="星6" parent="." instance=ExtResource("5_coin")]
+position = Vector2(1200, 250)
+
+[node name="星7" parent="." instance=ExtResource("5_coin")]
+position = Vector2(1500, 560)
+
+[node name="星8" parent="." instance=ExtResource("5_coin")]
+position = Vector2(2650, 560)
+
+[node name="終點旗" parent="." instance=ExtResource("6_flag")]
+position = Vector2(2900, 585)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="分數標籤" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 320.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "分數：0"
+
+[node name="提示標籤" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 1260.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 22
+text = "這是完成品示範！踩怪物的頭可以消滅牠，踩彈簧會彈很高，吃星星、走到旗子就贏。"
+autowrap_mode = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/示範_怪物.gd" id="1_m"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemy.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="shape_body"]
+size = Vector2(46, 24)
+
+[sub_resource type="RectangleShape2D" id="shape_detect"]
+size = Vector2(54, 34)
+
+[node name="怪物" type="CharacterBody2D" groups=["敵人"]]
+script = ExtResource("1_m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_body")
+
+[node name="偵測區" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="偵測區"]
+shape = SubResource("shape_detect")
