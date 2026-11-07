@@ -11,9 +11,12 @@ size = Vector2(1280, 40)
 script = ExtResource("1")
 
 [node name="背景" type="TextureRect" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 1320.0
+offset_bottom = 760.0
 texture = ExtResource("2")
+expand_mode = 1
 
 [node name="地面" type="StaticBody2D" parent="."]
 position = Vector2(640, 680)
@@ -292,7 +295,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 20
-text = "A D 走、W 跳、F 普攻、G 重擊\n1 = 木人受傷 0%　2 = 50%　3 = 100%　0 = 放回原位　Esc 回選將"
+text = "A D 走、W 跳、S 下、F 普攻、G 重擊（試試 S＋F、跑步＋G、跳起來 S＋F）\n1 = 木人受傷 0%　2 = 50%　3 = 100%　0 = 放回原位　4 = 怒氣加滿　Esc 回選將"
 horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 2

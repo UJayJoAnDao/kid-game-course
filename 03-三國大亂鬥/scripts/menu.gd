@@ -46,7 +46,7 @@ func 畫卡片(卡: Control, w, 誰: String) -> void:
 	卡.get_node("誰").text = 誰
 	卡.get_node("頭像").texture = w.待機圖
 	卡.get_node("名字").text = w.武將名稱
-	卡.get_node("介紹").text = w.介紹
+	卡.get_node("介紹").text = w.介紹 + "\n必殺技：" + w.必殺技名稱
 	卡.get_node("數值").text = "攻擊力　%d\n移動速度　%d\n跳躍力　%d\n重量　%.1f" % [w.攻擊力, w.移動速度, w.跳躍力, w.重量]
 	var 點數 := ""
 	if w.用點數:

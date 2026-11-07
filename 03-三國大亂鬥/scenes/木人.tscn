@@ -7,6 +7,7 @@
 [node name="木人" instance=ExtResource("1")]
 "武將名稱" = "木人"
 "介紹" = "訓練用的木頭人，不會還手。"
+"必殺技名稱" = ""
 "重量" = 1.0
 "待機圖" = ExtResource("2")
 "攻擊圖" = ExtResource("3")

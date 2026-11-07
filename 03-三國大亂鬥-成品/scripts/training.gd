@@ -38,6 +38,8 @@ func _process(delta: float) -> void:
 			木人.受傷 = 對[1]
 	if Input.is_action_just_pressed("dummy_reset"):
 		放回木人()
+	if Input.is_action_just_pressed("rage_full"):
+		玩家.怒氣 = 玩家.怒氣上限     # 練習必殺技用
 	if 玩家.global_position.y > 900:
 		玩家.重生(Vector2(420, 400))
 
