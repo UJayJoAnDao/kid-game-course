@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/fighter.tscn" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/custom.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/custom_attack.png" id="3"]
+
+[node name="我的武將" instance=ExtResource("1")]
+"武將名稱" = "我的武將"
+"介紹" = "（寫一句話介紹你的武將）"
+
+"待機圖" = ExtResource("2")
+"攻擊圖" = ExtResource("3")
+"用點數" = true
+"攻擊點" = 5
+"速度點" = 5
+"跳躍點" = 5
+"重量點" = 5

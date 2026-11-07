@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/fighter.tscn" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zhaoyun.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/zhaoyun_attack.png" id="3"]
+
+[node name="趙雲" instance=ExtResource("1")]
+"武將名稱" = "趙雲"
+"介紹" = "常山趙子龍，跑最快、跳最高，但是比較輕。"
+"攻擊力" = 1.0
+"移動速度" = 100.0
+"跳躍力" = 300.0
+"重量" = 1.0
+"待機圖" = ExtResource("2")
+"攻擊圖" = ExtResource("3")

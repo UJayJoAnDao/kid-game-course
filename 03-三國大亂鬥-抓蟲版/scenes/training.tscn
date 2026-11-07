@@ -1,0 +1,326 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/training.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/stage_main.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="s1"]
+size = Vector2(1280, 40)
+
+[node name="訓練場" type="Node2D"]
+script = ExtResource("1")
+
+[node name="背景" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2")
+
+[node name="地面" type="StaticBody2D" parent="."]
+position = Vector2(640, 680)
+
+[node name="Sprite2D" type="Sprite2D" parent="地面"]
+scale = Vector2(1.5, 1)
+texture = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="地面"]
+position = Vector2(0, -52)
+shape = SubResource("s1")
+
+[node name="尺" type="Node2D" parent="."]
+
+
+[node name="刻度0" type="ColorRect" parent="尺"]
+offset_left = 519
+offset_top = 612
+offset_right = 522
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字0" type="Label" parent="尺"]
+offset_left = 490
+offset_top = 636
+offset_right = 550
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度1" type="ColorRect" parent="尺"]
+offset_left = 569
+offset_top = 612
+offset_right = 572
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度2" type="ColorRect" parent="尺"]
+offset_left = 619
+offset_top = 612
+offset_right = 622
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字2" type="Label" parent="尺"]
+offset_left = 590
+offset_top = 636
+offset_right = 650
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度3" type="ColorRect" parent="尺"]
+offset_left = 669
+offset_top = 612
+offset_right = 672
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度4" type="ColorRect" parent="尺"]
+offset_left = 719
+offset_top = 612
+offset_right = 722
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字4" type="Label" parent="尺"]
+offset_left = 690
+offset_top = 636
+offset_right = 750
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度5" type="ColorRect" parent="尺"]
+offset_left = 769
+offset_top = 612
+offset_right = 772
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度6" type="ColorRect" parent="尺"]
+offset_left = 819
+offset_top = 612
+offset_right = 822
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字6" type="Label" parent="尺"]
+offset_left = 790
+offset_top = 636
+offset_right = 850
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度7" type="ColorRect" parent="尺"]
+offset_left = 869
+offset_top = 612
+offset_right = 872
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度8" type="ColorRect" parent="尺"]
+offset_left = 919
+offset_top = 612
+offset_right = 922
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字8" type="Label" parent="尺"]
+offset_left = 890
+offset_top = 636
+offset_right = 950
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度9" type="ColorRect" parent="尺"]
+offset_left = 969
+offset_top = 612
+offset_right = 972
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度10" type="ColorRect" parent="尺"]
+offset_left = 1019
+offset_top = 612
+offset_right = 1022
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字10" type="Label" parent="尺"]
+offset_left = 990
+offset_top = 636
+offset_right = 1050
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度11" type="ColorRect" parent="尺"]
+offset_left = 1069
+offset_top = 612
+offset_right = 1072
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度12" type="ColorRect" parent="尺"]
+offset_left = 1119
+offset_top = 612
+offset_right = 1122
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字12" type="Label" parent="尺"]
+offset_left = 1090
+offset_top = 636
+offset_right = 1150
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度13" type="ColorRect" parent="尺"]
+offset_left = 1169
+offset_top = 612
+offset_right = 1172
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="刻度14" type="ColorRect" parent="尺"]
+offset_left = 1219
+offset_top = 612
+offset_right = 1222
+offset_bottom = 634
+color = Color(1, 1, 1, 0.9)
+
+[node name="數字14" type="Label" parent="尺"]
+offset_left = 1190
+offset_top = 636
+offset_right = 1250
+offset_bottom = 664
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "14"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="刻度15" type="ColorRect" parent="尺"]
+offset_left = 1269
+offset_top = 612
+offset_right = 1272
+offset_bottom = 624
+color = Color(1, 1, 1, 0.9)
+
+[node name="公尺" type="Label" parent="尺"]
+offset_left = 1200
+offset_top = 600
+offset_right = 1278
+offset_bottom = 630
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "公尺"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="標題" type="Label" parent="UI"]
+offset_left = 20
+offset_top = 10
+offset_right = 700
+offset_bottom = 56
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 34
+text = "訓練場：打木人，看它飛多遠"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="說明" type="Label" parent="UI"]
+offset_left = 20
+offset_top = 60
+offset_right = 900
+offset_bottom = 130
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "A D 走、W 跳、F 普攻、G 重擊\n1 = 木人受傷 0%　2 = 50%　3 = 100%　0 = 放回原位　Esc 回選將"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="木人受傷" type="Label" parent="UI"]
+offset_left = 860
+offset_top = 14
+offset_right = 1260
+offset_bottom = 70
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "木人受傷：0%"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="結果" type="Label" parent="UI"]
+offset_left = 640
+offset_top = 150
+offset_right = 1260
+offset_bottom = 220
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.08, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 36
+text = "打木人一下試試看！"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2

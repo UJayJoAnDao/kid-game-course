@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/platform.png" id="1"]
+
+[sub_resource type="RectangleShape2D" id="s1"]
+size = Vector2(212, 12)
+
+[node name="浮空平台" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("s1")
+one_way_collision = true
