@@ -11,8 +11,12 @@ signal 被打中(擊退力: float)   ## 被打中時發出（訓練場用來量�
 @export var 移動速度: float = 280.0             ## 走路的速度
 @export var 跳躍力: float = 620.0               ## 跳多高（可以跳兩段）
 @export_range(0.5, 3.0, 0.1) var 重量: float = 1.0   ## 越重越不容易被打飛
-@export var 待機圖: Texture2D
-@export var 攻擊圖: Texture2D
+
+@export_group("圖片與動畫")
+@export var 待機圖: Texture2D                   ## 平常的樣子（把圖片拖進來，臉要朝右邊）
+@export var 攻擊圖: Texture2D                   ## 攻擊時的樣子
+@export_range(0.05, 3.0, 0.05) var 圖片大小: float = 1.0   ## 圖太大或太小，就改這個（1 = 原本大小）
+@export var 動畫: SpriteFrames                  ## 逐格動畫。動畫名字取：待機、走路、跳、攻擊、被打
 
 @export_group("必殺技")
 @export var 必殺技名稱: String = "必殺技"       ## 放必殺技時，畫面上出現的大字
@@ -26,7 +30,7 @@ signal 被打中(擊退力: float)   ## 被打中時發出（訓練場用來量�
 @export_range(0, 10) var 重量點: int = 5
 const 點數上限: int = 20
 
-# ✏️ 填空 2（第二次上課）：重擊用完後，要等幾秒才能再用？
+# ✏️ 填空 2（第三次上課）：重擊用完後，要等幾秒才能再用？
 const 重擊冷卻: float = 0.0
 const 普攻冷卻: float = 0.3
 const 基本重力: float = 1400.0
@@ -53,6 +57,7 @@ var 電腦想法 := {"方向": 0.0, "跳": false, "普攻": false, "重擊": fal
 var 電腦思考 := 0.0
 
 @onready var 圖: Sprite2D = $Sprite2D
+@onready var 動畫圖: AnimatedSprite2D = $動畫圖
 @onready var 刀光: Sprite2D = $刀光
 @onready var 名牌: Label = $名牌
 @onready var 招式名: Label = $招式名
@@ -63,6 +68,13 @@ func _ready() -> void:
 		套用點數()
 	if 待機圖:
 		圖.texture = 待機圖
+	圖.scale = Vector2(圖片大小, 圖片大小)
+	動畫圖.scale = Vector2(圖片大小, 圖片大小)
+	if 動畫:
+		# 有做動畫：用「動畫圖」，把原本的圖片藏起來
+		動畫圖.sprite_frames = 動畫
+		動畫圖.visible = true
+		圖.visible = false
 	刀光.visible = false
 	招式名.text = ""
 
@@ -259,7 +271,6 @@ func 受到攻擊(傷害: float, 基礎擊退: float, 方向: Vector2) -> void:
 		velocity.y = -擊退 * 0.6     # 往旁邊打的時候，也讓他往上飛一點
 	硬直 = 0.15 + 擊退 / 2500.0
 	招式剩 = 0.0
-	圖.modulate = Color(1, 0.4, 0.4)
 	被打中.emit(擊退)
 
 func 放必殺技() -> void:
@@ -298,9 +309,39 @@ func 重生(位置: Vector2) -> void:
 	招式剩 = 0.0
 	無敵 = 1.5
 
+# =====================================================================
+# 🎬 選動畫：看武將「現在在做什麼」，決定要播哪一段動畫。
+# 跟 選招式() 一樣，從上往下檢查，第一個成立的就用。
+# =====================================================================
+func 選動畫() -> String:
+	if 攻擊動作剩 > 0:
+		return "攻擊"
+	if 硬直 > 0:
+		return "被打"
+	if not is_on_floor():
+		return "跳"
+	if abs(velocity.x) > 30:
+		return "走路"
+	return "待機"
+
+func 播動畫(名字: String) -> void:
+	if not 動畫.has_animation(名字):
+		名字 = "待機"                      # 這段動畫還沒做，就先播待機
+	if not 動畫.has_animation(名字):
+		名字 = 動畫.get_animation_names()[0]
+	if 動畫圖.animation != 名字 or not 動畫圖.is_playing():
+		動畫圖.play(名字)
+	動畫圖.speed_scale = 1.0
+	if 名字 == "走路":
+		動畫圖.speed_scale = abs(velocity.x) / 250.0   # 跑越快，腳動越快
+
 func 更新樣子() -> void:
-	圖.flip_h = 面向 < 0
-	圖.texture = 攻擊圖 if (攻擊動作剩 > 0 and 攻擊圖) else 待機圖
+	var 身體 = 動畫圖 if 動畫 else 圖      # 有動畫就用動畫圖，沒有就用圖片
+	身體.flip_h = 面向 < 0                 # 往左邊走，就把圖左右翻過來
+	if 動畫:
+		播動畫(選動畫())
+	else:
+		圖.texture = 攻擊圖 if (攻擊動作剩 > 0 and 攻擊圖) else 待機圖
 	刀光.visible = 攻擊動作剩 > 0
 	刀光.flip_h = 面向 < 0
 	if 招式中 == "下劈" and 招式剩 > 0:
@@ -309,11 +350,14 @@ func 更新樣子() -> void:
 	else:
 		刀光.position = Vector2(70 * 面向, 0)
 		刀光.rotation_degrees = 0
-	if 硬直 <= 0:
-		圖.modulate = Color(1, 1, 1)
-	if 怒氣 >= 怒氣上限 and 硬直 <= 0:
-		圖.modulate = Color(1.3, 1.1, 0.7)   # 怒氣滿了會發光
-	圖.visible = not (無敵 > 0 and int(無敵 * 10) % 2 == 0)
+	# 🎨 顏色：Color(紅, 綠, 藍)，1 是原本的亮度，比 1 大會發光
+	身體.modulate = Color(1, 1, 1)             # 平常：原本的顏色
+	if 硬直 > 0:
+		身體.modulate = Color(1, 0.4, 0.4)     # 被打中：變紅
+	elif 怒氣 >= 怒氣上限:
+		身體.modulate = Color(1.3, 1.1, 0.7)   # 怒氣滿了：發光
+	# 剛復活的無敵時間：一閃一閃
+	身體.visible = not (無敵 > 0 and int(無敵 * 10) % 2 == 0)
 
 func 電腦動腦(delta: float) -> void:
 	# 電腦對手：每 0.15 秒想一次要做什麼

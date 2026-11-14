@@ -3,6 +3,38 @@
 [ext_resource type="PackedScene" path="res://scenes/fighter.tscn" id="1"]
 [ext_resource type="Texture2D" path="res://assets/sprites/zhaoyun.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/zhaoyun_attack.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/動畫/zhaoyun_走路1.png" id="f0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/動畫/zhaoyun_走路2.png" id="f1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/動畫/zhaoyun_跳.png" id="f2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/動畫/zhaoyun_被打.png" id="f3"]
+
+[sub_resource type="SpriteFrames" id="frames"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("2")}],
+"loop": true,
+"name": &"待機",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("f0")}, {"duration": 1.0, "texture": ExtResource("2")}, {"duration": 1.0, "texture": ExtResource("f1")}, {"duration": 1.0, "texture": ExtResource("2")}],
+"loop": true,
+"name": &"走路",
+"speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("f2")}],
+"loop": true,
+"name": &"跳",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3")}],
+"loop": true,
+"name": &"攻擊",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("f3")}],
+"loop": true,
+"name": &"被打",
+"speed": 5.0
+}]
 
 [node name="趙雲" instance=ExtResource("1")]
 "武將名稱" = "趙雲"
@@ -14,3 +46,4 @@
 "重量" = 0.9
 "待機圖" = ExtResource("2")
 "攻擊圖" = ExtResource("3")
+"動畫" = SubResource("frames")
